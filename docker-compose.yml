@@ -1,0 +1,19 @@
+version: "3" ## Specifying a version
+services: ## Specifying the service
+  web: ## Name your service whatever you want!
+    build: ## (docker build)
+      context: . ## Specify the context
+      dockerfile: Dockerfile.dev ## Specify the Dockerfile if not default
+    ports: ## Specify port mapping
+      - "3000:3000"
+    volumes: ## Specify Volumes
+      - /app/node_modules
+      - .:/app
+  tests:
+    build: ## (docker build)
+      context: . ## Specify the context
+      dockerfile: Dockerfile.dev ## Specify the Dockerfile if not default
+    volumes: ## Specify Volumes
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"] ## Override command
